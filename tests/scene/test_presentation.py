@@ -4,8 +4,13 @@ from playwright.sync_api import expect
 pytestmark = pytest.mark.browser
 
 
-def test_viewport_resize_and_large_text(scene_page):
+@pytest.mark.parametrize("font_family", ["system-ui, sans-serif", "monospace"])
+def test_viewport_resize_and_large_text(scene_page, font_family):
     page = scene_page
+    # System-font metrics differ between desktop and CI; exercise a wider fallback too.
+    page.evaluate(
+        "font => document.documentElement.style.setProperty('--font-body', font)", font_family
+    )
     page.set_viewport_size({"width": 1280, "height": 720})
     page.get_by_role("button", name="Настройки и управление").click()
     page.get_by_label("Размер текста").select_option("2")

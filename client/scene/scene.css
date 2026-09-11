@@ -94,7 +94,7 @@ h1 { font: 1.45rem var(--font-display); font-weight: 400; letter-spacing: 0.09em
 html[data-motion=reduced] #scene-message { transition: none; }
 
 html[data-large-text=true] .location, html[data-large-text=true] .study-label { display: none; }
-html[data-large-text=true] .actionbar button { width: 126px; }
+html[data-large-text=true] .actionbar button { width: max-content; min-width: 4rem; padding-inline: 0.5rem; }
 html[data-large-text=true] .objectives { display: none; }
 html[data-large-text=true] .weapon-hud { bottom: 165px; }
 @media (max-width: 650px) {
