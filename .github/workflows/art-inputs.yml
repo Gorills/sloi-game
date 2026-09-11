@@ -1,0 +1,68 @@
+# One-off asset inspection only. Not a replacement for Quality and not intended for main.
+# Downloads public, hash-verified image data; no imported scripts are executed.
+name: Inspect artwork inputs
+on:
+  push:
+    branches: [art-inputs/courtyard]
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 3bd33c7accc68d91b5410138516c1879f05b4662
+          persist-credentials: false
+      - name: Archive base and inspect licensed Flare image layers
+        run: |
+          mkdir -p prepared
+          git archive --format=zip HEAD > prepared/repository-base.zip
+          python - <<'PY'
+          import base64
+          import hashlib
+          import json
+          import pathlib
+          import urllib.request
+          root = pathlib.Path('prepared/flare')
+          root.mkdir()
+          base = 'https://api.github.com/repos/flareteam/flare-game/git/'
+          def get(path):
+              request = urllib.request.Request(base + path, headers={'User-Agent': 'sloi-art-review'})
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  return json.load(response)
+          def save(sha, path):
+              blob = get('blobs/' + sha)
+              data = base64.b64decode(blob['content'])
+              actual = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+              if actual != sha:
+                  raise ValueError('Unexpected content hash for ' + path)
+              target = root / path
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(data)
+          tree = get('trees/80da451a787401ab849a8d453ba51780e4d13460')['tree']
+          names = {'head_short.png', 'head_long.png', 'leather_boots.png', 'leather_chest.png',
+                   'leather_gloves.png', 'leather_pants.png', 'leather_hood.png', 'dagger.png'}
+          chosen = [entry for entry in tree if entry['path'] in names]
+          (root / 'image-tree.json').write_text(json.dumps(tree, indent=2))
+          for entry in chosen:
+              save(entry['sha'], 'images/' + entry['path'])
+          animations = get('trees/b90cdcddd68163ab469b4e33d70f5938c2cf0f90?recursive=1')['tree']
+          (root / 'animation-tree.json').write_text(json.dumps(animations, indent=2))
+          for entry in animations:
+              if entry['type'] == 'blob' and entry['path'].startswith('male/'):
+                  if entry['path'].split('/')[-1].replace('.txt', '.png') in names:
+                      save(entry['sha'], 'animations/' + entry['path'])
+          save('f8354e6b2fc75acc7b9fd7a2a2c5b8d1007f6127', 'hero.txt')
+          save('100b93820ade4c16225673b4ca62bb3ade63c313', 'upstream-README.md')
+          print('Saved', [entry['path'] for entry in chosen])
+          PY
+      - name: Obtain the already pinned local lint tool
+        run: python -m pip download --no-deps --only-binary=:all: ruff==0.12.12 --dest prepared/wheels
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: artwork-inputs
+          path: prepared/
+          retention-days: 7
+          if-no-files-found: error
