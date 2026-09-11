@@ -7,7 +7,8 @@ Status: draft
 | Endpoint | Результат |
 |---|---|
 | `GET /health` | `{"status":"ok","surface":"design-catalog"}` |
-| `GET /` | Собранный HTML; 503 с объяснением, если сборки нет |
+| `GET /` | Собранный HTML каталога; 503 с объяснением, если сборки нет |
+| `GET /scene` | Собранный HTML локального художественного этюда; 503, если сборки нет |
 
 Это полный текущий API. Игрового WebSocket, login и inventory endpoint пока нет.
 

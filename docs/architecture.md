@@ -6,14 +6,17 @@ Status: accepted
 
 | Путь | Ответственность |
 |---|---|
-| `server/app.py` | HTTP-оболочка каталога, не игровой сервер |
+| `server/app.py` | HTTP-оболочка двух образцов, не игровой сервер |
+| `client/src/scene/art/` | Оригинальные процедурные графические ресурсы, растрируемые при старте |
+| `client/src/scene/` | Локальный этюд: ввод, состояние, камера, UI; не authoritative world |
+| `client/scene/` | Игровая композиция HUD и диалогов |
 | `client/src/gallery.ts` | Настройки и взаимодействия каталога |
 | `client/src/map-preview.ts` | Статическая Canvas-схема, не мир и не симуляция |
 | `client/design/tokens.json` | Единственный набор визуальных токенов |
 | `client/index.html`, `client/layout.css` + `client/components.css` | Семантика и компоновка каталога |
 | `tools/build.py` | Сборка самодостаточного HTML без внешних runtime-ресурсов |
 | `tools/check_repo.py`, `tools/check_ts.cjs` | Проектные ограничения и проверки навигации |
-| `tests/` | Проверки основы и браузерного каталога |
+| `tests/` | Проверки основы, HTTP, каталога и локальной сцены |
 
 ## Границы будущей игры
 

@@ -1,0 +1,49 @@
+dialog { color: var(--color-text); background: var(--hud-bg); border: 1px solid var(--hud-line); border-radius: var(--hud-radius); padding: 0; max-width: calc(100vw - 24px); max-height: calc(100dvh - 40px); overflow: auto; box-shadow: 0 24px 100px color-mix(in srgb, var(--art-shadow) 72%, transparent); }
+dialog::backdrop { background: color-mix(in srgb, var(--hud-bg) 35%, transparent); }
+dialog header { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 25px 30px 21px; border-bottom: 1px solid color-mix(in srgb, var(--hud-line) 32%, transparent); }
+h2 { font: 1.65rem var(--font-display); font-weight: 400; margin: 7px 0 0; }
+.close { width: 40px; min-width: 40px; height: 40px; border: 1px solid color-mix(in srgb, var(--hud-line) 40%, transparent); }
+.close:hover { color: var(--color-accent); }
+.close .icon { width: 25px; height: 25px; }
+.inventory-panel { width: 760px; }
+.inventory-content { display: grid; grid-template-columns: 240px 1fr; }
+.equipment-portrait { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 350px; padding: 25px 20px; border-right: 1px solid color-mix(in srgb, var(--hud-line) 25%, transparent); background: radial-gradient(ellipse at 50% 47%, color-mix(in srgb, var(--art-grass) 45%, transparent), transparent 68%); }
+.equipment-portrait canvas { width: 185px; max-width: 100%; height: 207px; }
+.equipment-portrait span { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--color-accent); }
+.equipment-portrait small { font-size: 0.65rem; margin-top: 8px; color: var(--color-muted); }
+.bag-content { padding: 26px; }
+.inventory-summary { display: flex; justify-content: space-between; gap: 18px; font-size: 0.75rem; margin-bottom: 22px; color: var(--color-muted); }
+.item-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+.item-slot { min-height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; border: 1px solid color-mix(in srgb, var(--hud-line) 24%, transparent); background: linear-gradient(135deg, var(--color-surface), var(--hud-bg)); padding: 9px 3px; }
+.item-slot .icon { width: 36px; height: 36px; color: var(--color-accent); }
+.item-slot span { font-size: 0.62rem; overflow-wrap: anywhere; }
+.item-slot[aria-pressed=true], .item-slot:hover { border-color: var(--color-accent); }
+.item-detail { margin-top: 25px; border-top: 1px solid color-mix(in srgb, var(--hud-line) 30%, transparent); padding-top: 15px; }
+h3 { font: 1.1rem var(--font-display); color: var(--color-accent); margin: 0 0 10px; }
+.item-detail p { font-size: 0.78rem; line-height: 1.65; color: var(--color-muted); }
+dialog footer { padding: 15px 25px; border-top: 1px solid color-mix(in srgb, var(--hud-line) 30%, transparent); font-size: 0.65rem; color: var(--color-muted); }
+dialog footer span { float: right; }
+dialog footer kbd { margin-right: 7px; }
+.small-panel { width: 470px; }
+.small-panel > p { padding: 0 30px; font-size: 0.85rem; line-height: 1.7; }
+.supply-art { display: block; width: 90px; height: 90px; color: var(--color-accent); margin: 28px auto 16px; stroke-width: 1; }
+.primary { display: block; margin: 22px 30px; width: calc(100% - 60px); padding: 14px 20px; color: var(--color-ink); background: var(--color-accent); border: 1px solid var(--hud-line); font-size: 0.85rem; }
+.primary:hover:not(:disabled) { filter: brightness(1.06); }
+.panel-note { font-size: 0.65rem !important; color: var(--color-muted); padding: 0 30px; margin: 20px 0 25px; line-height: 1.7; }
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 26px 30px; font-size: 0.75rem; }
+.controls dt { color: var(--color-accent); }
+.controls dd { margin: 0; color: var(--color-muted); }
+.setting-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin: 0 30px; padding: 13px 0; border-top: 1px solid color-mix(in srgb, var(--hud-line) 25%, transparent); font-size: 0.78rem; }
+.setting-row input { width: 20px; height: 20px; accent-color: var(--color-accent); }
+.setting-row select { max-width: 110px; color: var(--color-text); background: var(--color-surface); border: 1px solid var(--hud-line); padding: 5px; }
+.map-panel { width: 740px; }
+#large-map { display: block; width: calc(100% - 60px); height: auto; margin: 25px 30px 15px; border: 1px solid color-mix(in srgb, var(--hud-line) 22%, transparent); }
+.map-legend { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 12px; padding: 0 30px; font-size: 0.75rem; color: var(--color-accent); }
+@media (max-width: 640px) {
+  .inventory-content { grid-template-columns: 1fr; }
+  .equipment-portrait { display: none; }
+  dialog header { padding: 18px; }
+  .bag-content { padding: 18px; }
+  dialog footer span { float: none; display: block; margin-top: 8px; }
+  h2 { font-size: 1.3rem; }
+}

@@ -1,0 +1,106 @@
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { background: var(--hud-bg); color: var(--color-text); font-family: var(--font-body); font-size: 1rem; }
+button, select, input { font: inherit; }
+button { color: inherit; cursor: pointer; border: none; background: none; }
+button:disabled { cursor: default; opacity: 0.44; }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+[hidden] { display: none !important; }
+.icon-library { position: absolute; width: 0; height: 0; overflow: hidden; }
+.icon { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; width: 32px; height: 32px; }
+kbd { font: 0.625rem var(--font-body); color: var(--color-accent); letter-spacing: 0.04em; }
+#game { position: relative; width: 100%; height: 100%; isolation: isolate; }
+#scene { display: block; width: 100%; height: 100%; outline: none; }
+#scene:focus-visible { outline: 1px solid var(--color-accent); outline-offset: -3px; }
+.scene-vignette { position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 130px 35px color-mix(in srgb, var(--hud-bg) 34%, transparent); }
+#loading { position: absolute; inset: 0; z-index: 60; display: grid; place-content: center; text-align: center; background: var(--hud-bg); }
+.wordmark { letter-spacing: 0.4em; font: 2.5rem var(--font-display); }
+#loading p { color: var(--color-muted); font-size: 0.8rem; }
+.player-hud { position: absolute; left: 26px; top: 26px; display: flex; align-items: center; gap: 13px; padding-right: 27px; }
+.player-hud::before { content: ''; position: absolute; inset: -16px -30px; z-index: -1; background: linear-gradient(90deg, color-mix(in srgb, var(--hud-bg) 89%, transparent), transparent); }
+.portrait { width: 58px; height: 64px; border: 1px solid var(--hud-line); background: var(--color-surface); clip-path: polygon(0 0, 87% 0, 100% 12%, 100% 100%, 13% 100%, 0 88%); }
+.portrait canvas { width: 100%; height: 100%; }
+.player-info { min-width: 143px; }
+.player-info strong { display: block; font: 1.1rem var(--font-display); letter-spacing: 0.03em; }
+.player-info > span { display: block; margin-top: 3px; font-size: 0.65rem; color: var(--color-muted); }
+.player-info small { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--color-muted); }
+.health-line { height: 4px; margin: 10px 0 4px; background: var(--hud-bg); border: 1px solid var(--hud-line); }
+.health-line span { display: block; width: 100%; height: 100%; background: var(--hud-health); }
+.location { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); text-align: center; pointer-events: none; text-shadow: 0 2px 12px var(--hud-bg); }
+.location > span { display: block; font-size: 0.64rem; letter-spacing: 0.18em; color: var(--color-accent); }
+h1 { font: 1.45rem var(--font-display); font-weight: 400; letter-spacing: 0.09em; margin: 7px 0 3px; }
+.location p { font-size: 0.75rem; letter-spacing: 0.09em; margin: 0; }
+.navigation { position: absolute; top: 24px; right: 25px; width: 186px; }
+.minimap-button { position: relative; display: block; width: 186px; height: 139px; border: 1px solid var(--hud-line); padding: 3px; background: color-mix(in srgb, var(--hud-bg) 90%, transparent); }
+.minimap-button canvas { width: 100%; height: 100%; opacity: 0.87; }
+.north { position: absolute; top: 6px; left: 48%; font: 0.7rem var(--font-display); color: var(--color-accent); }
+.map-caption { position: absolute; left: 9px; bottom: 7px; right: 9px; font-size: 0.68rem; letter-spacing: 0.14em; text-align: left; }
+.map-caption kbd { float: right; }
+.objectives { margin-top: 22px; padding: 10px 0 10px 12px; border-left: 1px solid var(--color-accent); background: linear-gradient(90deg, color-mix(in srgb, var(--hud-bg) 79%, transparent), transparent); }
+.eyebrow { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--color-accent); }
+.objectives p { font-size: 0.7rem; line-height: 1.55; margin: 10px 0 0; text-shadow: 0 1px 4px var(--hud-bg); }
+.objectives p::before { content: '◇'; margin-right: 7px; color: var(--color-accent); }
+.objectives p[data-done=true] { color: var(--color-muted); }
+.objectives p[data-done=true]::before { content: '✓'; color: var(--color-success); }
+.weapon-hud { position: absolute; left: 28px; bottom: 88px; display: grid; grid-template-columns: 48px 1fr; align-items: center; gap: 7px; text-shadow: 0 2px 6px var(--hud-bg); }
+.weapon-hud > .icon { width: 42px; height: 42px; color: var(--color-accent); }
+.weapon-hud p { margin: 0; font: 1.7rem var(--font-display); }
+.weapon-hud p span { font: 0.8rem var(--font-body); color: var(--color-muted); }
+.weapon-hud small { grid-column: 1/-1; font-size: 0.75rem; }
+.actionbar { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; padding: 10px 13px 7px; border-top: 1px solid var(--hud-line); background: linear-gradient(0deg, color-mix(in srgb, var(--hud-bg) 95%, transparent), color-mix(in srgb, var(--hud-bg) 84%, transparent)); box-shadow: 0 4px 20px color-mix(in srgb, var(--hud-bg) 30%, transparent); }
+.actionbar button { position: relative; display: grid; justify-items: center; gap: 4px; width: 76px; min-height: 64px; border: 1px solid transparent; }
+.actionbar button:hover:not(:disabled) { border-color: var(--hud-line); background: color-mix(in srgb, var(--color-accent) 8%, transparent); }
+.actionbar kbd { font-size: 0.66rem; }
+.actionbar .icon { color: var(--color-accent); width: 28px; height: 28px; }
+.actionbar span { font-size: 0.7rem; }
+.action-separator { width: 1px; height: 45px; background: color-mix(in srgb, var(--hud-line) 45%, transparent); margin: 0 5px; }
+.study-label { position: absolute; bottom: 23px; left: 28px; font-size: 0.75rem; line-height: 1.8; color: var(--color-text); text-shadow: 0 1px 6px var(--hud-bg); }
+.study-label span { color: var(--color-accent); }
+.study-label i { padding: 0 8px; }
+.study-label small { font-size: 0.7rem; color: var(--color-text); }
+.training-label { position: absolute; bottom: 31px; right: 30px; font-size: 0.53rem; letter-spacing: 0.14em; text-shadow: 0 2px 5px var(--hud-bg); }
+.training-label span { margin-left: 7px; font: 1.2rem var(--font-display); }
+#world-prompt { position: absolute; transform: translateX(-50%); }
+#interact-button { white-space: nowrap; background: color-mix(in srgb, var(--hud-bg) 92%, transparent); border: 1px solid var(--hud-line); padding: 9px 13px; font-size: 0.72rem; }
+#interact-button kbd { padding-right: 9px; font-size: 0.68rem; }
+#scene-message { position: absolute; left: 50%; bottom: calc(100px + 2.8rem); max-width: min(530px, 74vw); padding: 11px 18px; transform: translateX(-50%); text-align: center; pointer-events: none; font-size: 0.75rem; line-height: 1.5; background: color-mix(in srgb, var(--hud-bg) 92%, transparent); border-top: 1px solid var(--hud-line); opacity: 0; transition: opacity var(--motion-normal); }
+#scene-message.visible { opacity: 1; }
+@media (max-width: 850px) {
+  .location { top: 17px; }
+  .location p { display: none; }
+  .navigation { right: 12px; top: 16px; width: 140px; }
+  .minimap-button { width: 140px; height: 100px; }
+  .objectives { margin-top: 12px; }
+  .objectives p { font-size: 0.65rem; }
+  .player-hud { left: 13px; top: 16px; }
+  .player-info { min-width: 100px; }
+  .player-info small { display: none; }
+  .portrait { width: 45px; height: 51px; }
+  .weapon-hud { left: 15px; bottom: 117px; }
+  .study-label { display: none; }
+  .actionbar { bottom: 14px; }
+  .training-label { bottom: 14px; right: 12px; }
+}
+@media (max-width: 550px) {
+  .location { top: 90px; }
+  .location h1 { font-size: 1rem; }
+  .navigation { width: 118px; }
+  .minimap-button { width: 118px; height: 89px; }
+  .objectives { display: none; }
+  .actionbar button { width: 55px; }
+  .training-label { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { #scene-message { transition: none; } }
+html[data-motion=reduced] #scene-message { transition: none; }
+
+html[data-large-text=true] .location, html[data-large-text=true] .study-label { display: none; }
+html[data-large-text=true] .actionbar button { width: max-content; min-width: 4rem; padding-inline: 0.5rem; }
+html[data-large-text=true] .objectives { display: none; }
+html[data-large-text=true] .weapon-hud { bottom: 165px; }
+@media (max-width: 650px) {
+  html[data-large-text=true] .actionbar { width: calc(100% - 24px); justify-content: space-around; }
+  html[data-large-text=true] .actionbar button { width: auto; min-width: 48px; }
+  html[data-large-text=true] .actionbar button span { display: none; }
+  html[data-large-text=true] .player-info small { display: none; }
+  html[data-large-text=true] .location { display: none; }
+}
