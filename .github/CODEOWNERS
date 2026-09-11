@@ -1,0 +1,10 @@
+# Уведомления владельцу. Обязательное review включается настройкой ruleset, не этим файлом.
+/AGENTS.md @Gorills
+/CLAUDE.md @Gorills
+/.agents/ @Gorills
+/.github/ @Gorills
+/tools/ @Gorills
+/pyproject.toml @Gorills
+/tsconfig.json @Gorills
+/docs/world.md @Gorills
+/docs/design/ @Gorills

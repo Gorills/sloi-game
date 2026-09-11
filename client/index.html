@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Слои — дизайн-каталог</title>
+  <!-- STYLES -->
+  <!-- MODULES -->
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="masthead">
+    <span class="wordmark">СЛОИ <span class="small">/ ПОЛЕВОЙ АТЛАС</span></span>
+    <span class="badge">Дизайн-основа · draft</span>
+  </header>
+  <main id="main">
+    <section class="intro">
+      <p class="eyebrow">01 / ИНТЕРФЕЙС ЭКСПЕДИЦИИ</p>
+      <h1>Дом. Дорога.<br>Неизвестность.</h1>
+      <p class="lede">Каталог визуального языка, управления и состояний.
+        Демонстрационные данные: это не работающая игра и не подключение к игровому серверу.</p>
+    </section>
+    <section class="toolbar" aria-label="Настройки каталога">
+      <label>Масштаб текста
+        <select id="text-scale">
+            <option value="100">100%</option>
+            <option value="150">150%</option>
+            <option value="200">200%</option>
+          </select>
+      </label>
+      <label class="toggle"><input id="reduce-motion" type="checkbox">Уменьшить движение</label>
+      <button id="help-open" type="button">Показать управление</button>
+    </section>
+    <div class="layout">
+      <section class="panel atlas">
+        <div class="panel-heading"><h2>Маршрут экспедиции</h2><span class="small">Схема, не карта канона</span></div>
+        <canvas id="map" role="img" aria-label="Условная схема: поселение, развилка, Разлом и дальний маршрут"></canvas>
+        <p class="legend"><span>○ Поселение</span><span>◇ Разлом</span><span class="warning">△ Неизвестный участок</span></p>
+        <p class="small">Карта демонстрирует иерархию: цель и опасность заметнее фоновых деталей.</p>
+      </section>
+      <section class="panel">
+        <p class="eyebrow">СЛЕДУЮЩЕЕ РЕШЕНИЕ</p>
+        <h2>Подготовка к переходу</h2>
+        <p>Показываем стоимость и причину недоступности рядом с действием.</p>
+        <label>Состояние компонента
+          <select id="action-state">
+            <option value="ready">Готов</option>
+            <option value="insufficient">Не хватает ресурсов</option>
+            <option value="pending">Ожидание</option>
+            <option value="error">Ошибка</option>
+          </select>
+        </label>
+        <p id="action-reason" role="status">Демонстрационный режим: переход не выполняется.</p>
+        <button id="action-preview" class="primary" type="button">Пример действия</button>
+      </section>
+      <section class="panel">
+        <p class="eyebrow">ОБРАТНАЯ СВЯЗЬ</p><h2>Состояния связи</h2>
+        <label>Демонстрационное состояние
+          <select id="connection-state">
+            <option value="connected">Соединение восстановлено</option>
+            <option value="reconnecting">Переподключение</option>
+            <option value="offline">Нет связи</option>
+          </select>
+        </label>
+        <p id="connection-message" class="status" role="status" data-state="connected">✓ Соединение восстановлено — демонстрация</p>
+        <p class="small">Цвет дополняет значок и текст, но не заменяет их. Игровое состояние здесь не моделируется.</p>
+      </section>
+      <section class="panel">
+        <p class="eyebrow">02 / СЕМАНТИЧЕСКИЕ ТОКЕНЫ</p><h2>Меньше шума. Больше смысла.</h2>
+        <div class="swatches">
+          <span class="swatch accent">Действие</span>
+          <span class="swatch info">Информация</span>
+          <span class="swatch danger">Опасность</span>
+          <span class="swatch success">Подтверждение</span>
+        </div>
+        <p>Основной текст, вторичная информация и интерактивные границы проверяются на контраст.</p>
+        <p class="small">Одна палитра. Единые отступы. Семантический DOM поверх Canvas. Настройки доступны до начала игры.</p>
+      </section>
+    </div>
+  </main>
+  <footer>FOUNDATION / 2026-09-11 <span>Игровые механики и окончательный арт-стиль ещё не утверждены.</span></footer>
+  <dialog id="help" aria-labelledby="help-title">
+    <h2 id="help-title">Управление каталогом</h2>
+    <p>Tab / Shift+Tab — переход по элементам. Enter / Space — кнопка. Esc — закрыть диалог.</p>
+    <p>Это проверка интерфейса. Управление персонажем пока не реализовано.</p>
+    <form method="dialog"><button type="submit" autofocus>Вернуться</button></form>
+  </dialog>
+</body>
+</html>
