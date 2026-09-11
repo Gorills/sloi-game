@@ -50,7 +50,11 @@ def build() -> Path:
         imports, "index.html", ("layout.css", "components.css"), "gallery", "index.html"
     )
     write_page(
-        imports, "scene/index.html", ("scene/scene.css", "scene/panels.css"), "scene/main", "scene.html"
+        imports,
+        "scene/index.html",
+        ("scene/scene.css", "scene/panels.css"),
+        "scene/main",
+        "scene.html",
     )
     return catalog
 
