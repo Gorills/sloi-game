@@ -7,6 +7,9 @@ Status: accepted
 Python 3.13, Node.js 22, TypeScript 5.8.3. Версии Python-пакетов зафиксированы в
 [requirements-dev.txt](../requirements-dev.txt). Это проверяемый набор прототипа,
 не обещание, что каждая версия — новейшая. Обновления зависимостей — отдельный PR.
+AnyIO 4.13.0 закреплён отдельно: свежий 4.15.1 вызывает DeprecationWarning внутри
+Starlette 0.50 TestClient, что воспроизведено в CI. Проверка warnings-as-errors сохранена;
+ограничение пересмотреть вместе с обновлением FastAPI/Starlette. Полного hash-lock пока нет.
 
 ```sh
 python3.13 -m venv .venv
