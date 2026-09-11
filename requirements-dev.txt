@@ -1,0 +1,12 @@
+# Exact direct dependencies plus the compatibility constraint below. Not a full hash lock.
+fastapi==0.128.2
+uvicorn==0.48.0
+httpx==0.28.1
+pytest==9.0.2
+playwright==1.57.0
+PyYAML==6.0.3
+ruff==0.12.12
+
+# Starlette 0.50 TestClient uses an alias deprecated in AnyIO 4.15.
+# Keep warnings-as-errors; revisit this pin with the FastAPI/Starlette upgrade.
+anyio==4.13.0
