@@ -24,11 +24,15 @@ def code_errors(path: Path, text: str) -> list[str]:
     except SyntaxError as exc:
         return errors + [f"{path}: {exc}"]
     for node in ast.walk(tree):
-        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+        if isinstance(node, ast.FunctionDef | ast.AsyncFunctionDef):
             if (node.end_lineno or node.lineno) - node.lineno + 1 > 60:
                 errors.append(f"{path}:{node.lineno}: function exceeds 60 lines")
         if "tests" in path.parts and isinstance(node, ast.Call):
-            if isinstance(node.func, ast.Attribute) and node.func.attr in {"skip", "skipif", "xfail"}:
+            if isinstance(node.func, ast.Attribute) and node.func.attr in {
+                "skip",
+                "skipif",
+                "xfail",
+            }:
                 errors.append(f"{path}:{node.lineno}: skipped required checks are forbidden")
     return errors
 
@@ -66,4 +70,17 @@ def skill_errors(path: Path, text: str) -> list[str]:
         errors.append(f"{path}: skill exceeds local 150-line budget")
     if "docs/research.md" not in text:
         errors.append(f"{path}: missing source reference")
+    return errors
+
+
+def document_errors(path: Path, text: str) -> list[str]:
+    errors = []
+    if path.parts[0] == "docs" and path.suffix == ".md":
+        if not re.search(r"^Status: (accepted|draft|reference|template)$", text, re.MULTILINE):
+            errors.append(f"{path}: missing document status")
+    if path.name == "SKILL.md":
+        errors += skill_errors(path, text)
+    if path.as_posix() == "AGENTS.md":
+        if len(text.splitlines()) > 120 or len(text.encode()) > 12000:
+            errors.append("AGENTS.md: exceeds 120 lines / 12000 bytes")
     return errors

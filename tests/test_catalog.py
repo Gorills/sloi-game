@@ -24,9 +24,14 @@ def test_missing_build_is_explicit_failure(tmp_path):
 
 
 def luminance(color):
-    channels = [int(color[index:index + 2], 16) / 255 for index in (1, 3, 5)]
-    linear = [value / 12.92 if value <= 0.04045 else ((value + 0.055) / 1.055) ** 2.4 for value in channels]
-    return sum(value * weight for value, weight in zip(linear, (0.2126, 0.7152, 0.0722), strict=True))
+    channels = [int(color[index : index + 2], 16) / 255 for index in (1, 3, 5)]
+    linear = [
+        value / 12.92 if value <= 0.04045 else ((value + 0.055) / 1.055) ** 2.4
+        for value in channels
+    ]
+    return sum(
+        value * weight for value, weight in zip(linear, (0.2126, 0.7152, 0.0722), strict=True)
+    )
 
 
 def test_declared_token_contrast():

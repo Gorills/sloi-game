@@ -29,9 +29,12 @@ def test_states_and_reduced_motion(catalog_page):
     page.locator("#connection-state").select_option("reconnecting")
     page.get_by_label("Уменьшить движение").check()
     expect(page.locator("html")).to_have_attribute("data-motion", "reduced")
-    assert page.locator("#connection-message").evaluate(
-        "element => getComputedStyle(element).animationName"
-    ) == "none"
+    assert (
+        page.locator("#connection-message").evaluate(
+            "element => getComputedStyle(element).animationName"
+        )
+        == "none"
+    )
 
 
 def test_narrow_large_text_and_canvas_dpr(catalog_page):

@@ -24,8 +24,19 @@ def server_url():
     url = f"http://127.0.0.1:{port}"
     with (ARTIFACTS / "catalog-server.log").open("w") as log:
         process = subprocess.Popen(
-            [sys.executable, "-m", "uvicorn", "server.app:app", "--host", "127.0.0.1", "--port", str(port)],
-            cwd=ROOT, stdout=log, stderr=log,
+            [
+                sys.executable,
+                "-m",
+                "uvicorn",
+                "server.app:app",
+                "--host",
+                "127.0.0.1",
+                "--port",
+                str(port),
+            ],
+            cwd=ROOT,
+            stdout=log,
+            stderr=log,
         )
         try:
             wait_for_server(url, process)
@@ -63,7 +74,9 @@ def catalog_page(server_url, request):
         browser = playwright.chromium.launch(
             executable_path=os.environ.get("CHROMIUM_EXECUTABLE") or None, headless=True
         )
-        context = browser.new_context(viewport={"width": 1280, "height": 960}, device_scale_factor=2)
+        context = browser.new_context(
+            viewport={"width": 1280, "height": 960}, device_scale_factor=2
+        )
         context.tracing.start(screenshots=True, snapshots=True, sources=True)
         page = context.new_page()
         page.on("pageerror", lambda error: errors.append(str(error)))
@@ -79,7 +92,9 @@ def catalog_page(server_url, request):
             assert errors == [], errors
         finally:
             try:
-                page.screenshot(path=str(ARTIFACTS / f"{request.node.name}-{mode}.png"), full_page=True)
+                page.screenshot(
+                    path=str(ARTIFACTS / f"{request.node.name}-{mode}.png"), full_page=True
+                )
                 context.tracing.stop(path=str(ARTIFACTS / f"{request.node.name}-{mode}-trace.zip"))
             finally:
                 browser.close()

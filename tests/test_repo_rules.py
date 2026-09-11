@@ -62,7 +62,9 @@ def test_runtime_skip_alias_cannot_make_suite_green(tmp_path):
     sample.write_text("from pytest import skip as defer\ndef test_hidden():\n    defer('hidden')\n")
     result = subprocess.run(
         [sys.executable, "-m", "pytest", "-q", "-p", "tools.pytest_policy", str(sample)],
-        cwd=ROOT, capture_output=True, text=True,
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
     )
     assert result.returncode == 1
     assert "Required checks cannot be skipped" in result.stdout
