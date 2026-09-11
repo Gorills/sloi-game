@@ -60,7 +60,9 @@ def build_scene(imports: dict[str, str], variables: str) -> None:
     scripts += '<script type="module">import "@sloi/scene/main";</script>'
     html = html.replace("<!-- STYLES -->", f"<style>:root{{{variables}}}{css}</style>")
     html = html.replace("<!-- MODULES -->", scripts)
-    manifest = '<script id="scene-assets" type="application/json">' + json.dumps(sources) + "</script>"
+    manifest = (
+        '<script id="scene-assets" type="application/json">' + json.dumps(sources) + "</script>"
+    )
     html = html.replace("<!-- ASSETS -->", manifest)
     (ROOT / "dist/scene.html").write_text(html, encoding="utf-8")
 

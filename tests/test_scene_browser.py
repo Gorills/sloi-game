@@ -32,7 +32,8 @@ def scene_page(server_url, request):
         page.set_default_timeout(8000)
         page.on("pageerror", lambda error: errors.append(str(error)))
         page.on(
-            "console", lambda message: errors.append(message.text) if message.type == "error" else None
+            "console",
+            lambda message: errors.append(message.text) if message.type == "error" else None,
         )
         try:
             open_scene(page, server_url)

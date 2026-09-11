@@ -35,9 +35,9 @@ def tree(rng: random.Random) -> str:
         tone = int(max(0, min(5, (143 - y) / 21 + rng.uniform(-1, 1))))
         r = rng.uniform(2, 9)
         parts.append(
-            f'<path d="M{x-r:.1f} {y:.1f}q{r/2:.1f} {-r:.1f} {r:.1f} {-r/2:.1f}'
-            f'q{r*1.8:.1f} {r/2:.1f} {r/2:.1f} {r:.1f}'
-            f'q{-r:.1f} {r:.1f} {-r*1.5:.1f} {-r/2:.1f}Z" fill="{COLORS[tone]}"/>'
+            f'<path d="M{x - r:.1f} {y:.1f}q{r / 2:.1f} {-r:.1f} {r:.1f} {-r / 2:.1f}'
+            f"q{r * 1.8:.1f} {r / 2:.1f} {r / 2:.1f} {r:.1f}"
+            f'q{-r:.1f} {r:.1f} {-r * 1.5:.1f} {-r / 2:.1f}Z" fill="{COLORS[tone]}"/>'
         )
     return "\n".join(parts) + "\n</g>\n</svg>\n"
 
@@ -57,7 +57,7 @@ def shrub(rng: random.Random) -> str:
             continue
         color = rng.choice(["#4b643a", "#73824b", "#9b9f61", "#c4b883"])
         parts.append(
-            f'<ellipse cx="{x:.1f}" cy="{y:.1f}" rx="{r:.1f}" ry="{r*.6:.1f}" fill="{color}"/>'
+            f'<ellipse cx="{x:.1f}" cy="{y:.1f}" rx="{r:.1f}" ry="{r * 0.6:.1f}" fill="{color}"/>'
         )
     return "\n".join(parts) + "\n</svg>\n"
 
