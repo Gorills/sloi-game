@@ -1,0 +1,74 @@
+.game-panel { color: var(--color-text); background: var(--color-surface); padding: 0; border: 1px solid var(--color-accent-dim); width: min(760px, calc(100vw - 32px)); max-height: calc(100dvh - 40px); border-radius: 4px; box-shadow: 0 24px 100px var(--color-shadow); overflow: auto; }
+.game-panel::backdrop { background: var(--color-backdrop); backdrop-filter: blur(3px); }
+.panel-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 27px 30px 23px; border-bottom: 1px solid var(--color-hud-edge); background: linear-gradient(135deg, var(--color-action-warm), transparent); }
+.panel-header h2 { font-family: var(--font-display); font-weight: 450; font-size: 1.9rem; margin: 7px 0 0; letter-spacing: .025em; }
+.close-panel { background: transparent; border: 1px solid var(--color-accent-dim); width: 36px; height: 36px; border-radius: 3px; font-size: 1.5rem; flex: none; }
+.close-panel:hover { color: var(--color-accent); }
+.inventory-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); min-height: 384px; }
+.paper-doll { position: relative; background: radial-gradient(ellipse at 50% 38%, var(--color-raised), var(--color-bg)); display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid var(--color-hud-edge); padding: 24px 16px; overflow: hidden; }
+.doll-ring { position: absolute; width: 184px; height: 184px; border: 1px solid var(--color-accent-dim); border-radius: 50%; top: 35px; opacity: .5; }
+.doll-ring::after { content: ''; position: absolute; inset: 12px; border: 1px solid var(--color-accent-dim); border-radius: 50%; }
+.doll { width: 133px; height: 160px; object-fit: contain; z-index: 1; filter: drop-shadow(0 12px 10px var(--color-shadow)); }
+.doll-caption { margin: 18px 0; text-align: center; font-size: .6875rem; letter-spacing: .18em; }
+.doll-caption small { display: block; margin-top: 6px; font-size: .625rem; letter-spacing: .04em; color: var(--color-muted); }
+.equipment { display: flex; gap: 12px; }
+.equipment img { width: 57px; height: 57px; object-fit: contain; background: var(--color-slot); border: 1px solid var(--color-accent-dim); border-radius: 3px; padding: 6px; }
+.pack { padding: 26px 24px; min-width: 0; }
+.pack > .eyebrow { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 15px; }
+.pack > .eyebrow span { color: var(--color-muted); font-size: .5625rem; letter-spacing: .05em; }
+.item { display: flex; align-items: center; gap: 12px; width: 100%; padding: 9px 8px; background: var(--color-slot); border: 1px solid var(--color-hud-edge); border-radius: 3px; text-align: left; margin-bottom: 7px; }
+.item:hover, .item[aria-pressed="true"] { border-color: var(--color-accent-dim); background: var(--color-raised); }
+.item img { width: 48px; height: 43px; object-fit: contain; flex: none; }
+.item strong { display: block; font-weight: 450; font-size: .8125rem; }
+.item small { display: block; margin-top: 6px; color: var(--color-muted); font-size: .625rem; line-height: 1.5; }
+.item b, .item-chevron { margin-left: auto; color: var(--color-accent); font-size: 1rem; font-weight: 450; }
+.item-details { border-top: 1px solid var(--color-hud-edge); margin-top: 21px; padding-top: 17px; }
+.item-details h3 { margin: 9px 0; font-size: .9375rem; font-weight: 500; }
+.item-details p { color: var(--color-muted); font-size: .75rem; line-height: 1.7; margin-bottom: 0; }
+.panel-footer { padding: 15px 24px; border-top: 1px solid var(--color-hud-edge); color: var(--color-muted); font-size: .625rem; line-height: 1.6; }
+.small-panel { width: min(620px, calc(100vw - 32px)); }
+.settings-content { padding: 16px 30px 26px; }
+.settings-content p { color: var(--color-muted); font-size: .8125rem; line-height: 1.7; }
+.option { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--color-hud-edge); font-size: .875rem; }
+.option small { display: block; color: var(--color-muted); font-size: .6875rem; margin-top: 8px; line-height: 1.6; }
+.option input { accent-color: var(--color-accent); width: 20px; height: 20px; flex: none; }
+.option select { background: var(--color-bg); color: var(--color-text); padding: 8px; border: 1px solid var(--color-accent-dim); border-radius: 3px; }
+.panel-note { color: var(--color-muted); font-size: .75rem; line-height: 1.7; margin: 20px 25px; }
+#local-map { display: block; width: calc(100% - 40px); height: auto; margin: 20px; border: 1px solid var(--color-accent-dim); }
+@media (max-width: 620px) {
+  .inventory-layout { grid-template-columns: 1fr; }
+  .paper-doll { display: none; }
+  .panel-header { padding: 20px; }
+  .panel-header h2 { font-size: 1.5rem; }
+  .pack { padding: 20px; }
+  .settings-content { padding: 10px 20px 20px; }
+  .item { gap: 8px; }
+  .item img { width: 37px; }
+  .item strong { font-size: .75rem; }
+}
+html[data-large-text="true"] .hud-top .identity { width: auto; }
+html[data-large-text="true"] .identity-line > span,
+html[data-large-text="true"] .identity-caption,
+html[data-large-text="true"] .objective,
+html[data-large-text="true"] .footer-hints > span { display: none; }
+html[data-large-text="true"] .hud-top { inset: 12px; }
+html[data-large-text="true"] .location .eyebrow,
+html[data-large-text="true"] .location-sub { display: none; }
+html[data-large-text="true"] .location h1 { font-size: .65rem; margin: 3px 0; }
+html[data-large-text="true"] .identity { padding: 8px; }
+html[data-large-text="true"] .identity-line strong { font-size: .7rem; }
+html[data-large-text="true"] .hud-bottom { bottom: 55px; gap: 6px; left: 12px; right: 12px; }
+html[data-large-text="true"] .weapon { display: flex; position: fixed; left: 16px; top: 116px; padding: 8px 12px; }
+html[data-large-text="true"] .weapon > img,
+html[data-large-text="true"] .weapon .eyebrow { display: none; }
+html[data-large-text="true"] .actions { flex: 1; }
+html[data-large-text="true"] .action { flex: 1; width: auto; }
+html[data-large-text="true"] .action > span { display: none; }
+html[data-large-text="true"] .feedback { bottom: 162px; }
+html[data-large-text="true"] .inventory-layout { grid-template-columns: 1fr; }
+html[data-large-text="true"] .paper-doll { display: none; }
+html[data-large-text="true"] .pack > .eyebrow > span { display: none; }
+html[data-large-text="true"] .option { align-items: flex-start; gap: 10px; }
+html[data-large-text="true"] .option select { max-width: 45%; }
+.panel-header > div, .item > span { min-width: 0; }
+.panel-header h2, .item strong, .item small { overflow-wrap: anywhere; }

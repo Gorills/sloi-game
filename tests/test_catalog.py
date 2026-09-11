@@ -10,8 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_health_and_built_catalog():
     with TestClient(create_app()) as client:
-        assert client.get("/health").json() == {"status": "ok", "surface": "design-catalog"}
-        response = client.get("/")
+        assert client.get("/health").json() == {"status": "ok", "surface": "visual-study"}
+        response = client.get("/catalog")
         assert response.status_code == 200
         assert response.text == (ROOT / "dist/index.html").read_text(encoding="utf-8")
         assert client.get("/AGENTS.md").status_code == 404
@@ -21,6 +21,7 @@ def test_health_and_built_catalog():
 def test_missing_build_is_explicit_failure(tmp_path):
     with TestClient(create_app(tmp_path / "missing.html")) as client:
         assert client.get("/").status_code == 503
+        assert client.get("/catalog").status_code == 503
 
 
 def luminance(color):

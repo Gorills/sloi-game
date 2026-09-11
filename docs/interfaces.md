@@ -6,8 +6,9 @@ Status: draft
 
 | Endpoint | Результат |
 |---|---|
-| `GET /health` | `{"status":"ok","surface":"design-catalog"}` |
-| `GET /` | Собранный HTML; 503 с объяснением, если сборки нет |
+| `GET /health` | `{"status":"ok","surface":"visual-study"}` |
+| `GET /`, `GET /scene` | Художественный образец `dist/scene.html`; 503, если сборки нет |
+| `GET /catalog` | Каталог `dist/index.html`; 503, если сборки нет |
 
 Это полный текущий API. Игрового WebSocket, login и inventory endpoint пока нет.
 
@@ -44,3 +45,7 @@ Renderer рисует view, DOM UI отображает команды/стат�
 
 Любое изменение контракта включает обновление обеих сторон и проверку старого/нового
 сообщения по выбранной стратегии совместимости. Основа: [OWASP/FastAPI/SQLite](research.md).
+
+
+Локальная учебная симуляция не является контрактом будущего authoritative-сервера;
+см. [образец](design/scene-study.md). Произвольные пути к репозиторию не обслуживаются.

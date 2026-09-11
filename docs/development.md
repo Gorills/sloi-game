@@ -21,17 +21,19 @@ make build
 make serve
 ```
 
+После `make serve` основной экран открывается на `/`, отдельный каталог на `/catalog`.
+
 Установка требует сети и выполняется один раз на окружение. Скрипты проверки не
 скачивают зависимости и не запускают `curl | sh`. Сервер слушает только loopback.
 TypeScript здесь отдельный закреплённый build-tool, runtime npm-зависимостей нет.
 
 | Команда | Назначение |
 |---|---|
-| `make build` | Строгая TS-сборка, токены → CSS variables, автономный `dist/index.html` |
+| `make build` | Строгая TS-сборка, токены → CSS variables, автономные `dist/index.html` (каталог) и `dist/scene.html` |
 | `make serve` | FastAPI на `127.0.0.1:8000` |
 | `make lint` | Ruff check/format и проектные ограничения |
 | `make test` | Unit/integration основы, без браузера |
-| `make browser` | Каталог через настоящую URL-навигацию |
+| `make browser` | Каталог и художественная сцена через настоящую URL-навигацию |
 | `make check` | Lint + build + unit/integration + browser, без пропуска этапов |
 
 При уже установленном Chromium можно явно задать `CHROMIUM_EXECUTABLE=/usr/bin/chromium`.

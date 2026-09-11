@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="290" height="350" viewBox="0 0 290 350">
+<defs>
+<filter id="pigment" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" seed="8" result="noise"/>
+<feColorMatrix in="noise" type="saturate" values="0" result="grey"/>
+<feComponentTransfer in="grey" result="faded"><feFuncA type="linear" slope=".12"/></feComponentTransfer>
+<feComposite in="faded" in2="SourceGraphic" operator="in" result="grain"/>
+<feBlend in="SourceGraphic" in2="grain" mode="soft-light"/>
+</filter>
+<pattern id="stone" width="70" height="40" patternUnits="userSpaceOnUse">
+<rect width="70" height="40" fill="#747360"/>
+<path d="M2 2H35V18H2Z M39 2H68V18H39Z M2 22H17V38H2Z M21 22H53V38H21Z M57 22H68V38H57Z" fill="#a9a48a"/>
+<path d="M4 4H32 M41 4H65 M23 24H50 M4 24H14" stroke="#b0a58a" stroke-width="2" opacity=".65"/>
+<path d="M7 8l4 2m34-3 6 2M27 29l5 2" stroke="#575e4b" opacity=".45"/>
+</pattern>
+<linearGradient id="shade" x2="1" y2="1"><stop stop-color="#343e37" stop-opacity="0"/><stop offset="1" stop-color="#132b2a" stop-opacity=".8"/></linearGradient>
+<linearGradient id="plaster" x2=".2" y2="1"><stop stop-color="#ded1a8"/><stop offset="1" stop-color="#8c9375"/></linearGradient>
+<linearGradient id="wood" x2="1" y2=".3"><stop stop-color="#5d4630"/><stop offset=".5" stop-color="#988061"/><stop offset="1" stop-color="#473e30"/></linearGradient>
+<pattern id="roof" width="42" height="28" patternUnits="userSpaceOnUse" patternTransform="skewX(-22) scale(.65)">
+<rect width="42" height="28" fill="#293c40"/><path d="M1 1h39v23l-7 3H1Z" fill="#50696a"/>
+<path d="M3 2h36v8H3Z" fill="#648080"/><path d="M4 18h32M7 22h21" stroke="#435c60"/>
+<path d="M1 27h32l7-4M41 1v26" fill="none" stroke="#1e3338" stroke-width="2"/>
+</pattern>
+<linearGradient id="rooflight" x2="0" y2="1"><stop stop-color="#dbcea5" stop-opacity=".24"/><stop offset=".7" stop-color="#0a292b" stop-opacity=".1"/><stop offset="1" stop-color="#041f29" stop-opacity=".48"/></linearGradient>
+<radialGradient id="lamp"><stop stop-color="#ffe9a3"/><stop offset=".3" stop-color="#e1a759"/><stop offset="1" stop-color="#674b32"/></radialGradient>
+</defs>
+<g filter="url(#pigment)">
+<ellipse cx="155" cy="320" rx="125" ry="21" fill="#19332d" opacity=".26"/>
+<path d="M16 166l59-18 29 24v133l-56 20-32-21Z M194 107l53-16 27 24v164l-53 17-27-18Z" fill="url(#stone)" stroke="#626a52" stroke-width="3"/>
+<path d="M48 186l54-16v135l-54 18Z M219 129l55-16v165l-55 19Z" fill="url(#shade)"/>
+<path d="M9 149l61-21 39 28-62 25Z M188 90l58-16 33 26-59 20Z" fill="#c1b592" stroke="#5b614e" stroke-width="4"/>
+<path d="M70 146V116l155-45v30L70 148Z" fill="url(#wood)" stroke="#494b39" stroke-width="4"/>
+<path d="M95 128l4-57 7-2 2 55m40-11V57l8-2v55m36-11 1-55 8-2v55" stroke="#6f6951" stroke-width="8"/>
+<path d="M83 80l127-36M84 93l125-35" stroke="#b6a380" stroke-width="4"/>
+<path d="M66 158l153-43" stroke="#303e33" stroke-width="10"/>
+<path d="M98 160l38 19v75l-38-18Z" fill="#405e58" stroke="#ac9e70" stroke-width="2"/>
+<path d="M110 186l10 6 6 17-7 4-10-17Z" fill="#bdac70"/>
+<path d="M210 114v-80" stroke="#544e3c" stroke-width="3"/>
+<path d="M214 34q24 13 41 1v48q-20 10-41-2Z" fill="#496e64"/>
+<path d="M222 50l12 11-10 9" fill="none" stroke="#c2b477" stroke-width="3"/>
+<path d="M49 211l15-5v29l-15 5Z" fill="url(#lamp)" stroke="#3c4637" stroke-width="3"/>
+<path d="M214 173l14-4v29l-14 4Z" fill="url(#lamp)" stroke="#3c4637" stroke-width="3"/>
+</g>
+</svg>
