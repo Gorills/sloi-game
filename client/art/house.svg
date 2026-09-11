@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="380" viewBox="0 0 430 380">
+<defs>
+<filter id="pigment" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" seed="8" result="noise"/>
+<feColorMatrix in="noise" type="saturate" values="0" result="grey"/>
+<feComponentTransfer in="grey" result="faded"><feFuncA type="linear" slope=".12"/></feComponentTransfer>
+<feComposite in="faded" in2="SourceGraphic" operator="in" result="grain"/>
+<feBlend in="SourceGraphic" in2="grain" mode="soft-light"/>
+</filter>
+<pattern id="stone" width="70" height="40" patternUnits="userSpaceOnUse">
+<rect width="70" height="40" fill="#747360"/>
+<path d="M2 2H35V18H2Z M39 2H68V18H39Z M2 22H17V38H2Z M21 22H53V38H21Z M57 22H68V38H57Z" fill="#a9a48a"/>
+<path d="M4 4H32 M41 4H65 M23 24H50 M4 24H14" stroke="#b0a58a" stroke-width="2" opacity=".65"/>
+<path d="M7 8l4 2m34-3 6 2M27 29l5 2" stroke="#575e4b" opacity=".45"/>
+</pattern>
+<linearGradient id="shade" x2="1" y2="1"><stop stop-color="#343e37" stop-opacity="0"/><stop offset="1" stop-color="#132b2a" stop-opacity=".8"/></linearGradient>
+<linearGradient id="plaster" x2=".2" y2="1"><stop stop-color="#ded1a8"/><stop offset="1" stop-color="#8c9375"/></linearGradient>
+<linearGradient id="wood" x2="1" y2=".3"><stop stop-color="#5d4630"/><stop offset=".5" stop-color="#988061"/><stop offset="1" stop-color="#473e30"/></linearGradient>
+<pattern id="roof" width="42" height="28" patternUnits="userSpaceOnUse" patternTransform="skewX(-22) scale(.65)">
+<rect width="42" height="28" fill="#534538"/><path d="M1 1h39v23l-7 3H1Z" fill="#8c6550"/>
+<path d="M3 2h36v8H3Z" fill="#a77b5a"/><path d="M4 18h32M7 22h21" stroke="#845d44"/>
+<path d="M1 27h32l7-4M41 1v26" fill="none" stroke="#504839" stroke-width="2"/>
+</pattern>
+<linearGradient id="rooflight" x2="0" y2="1"><stop stop-color="#dbcea5" stop-opacity=".24"/><stop offset=".7" stop-color="#0a292b" stop-opacity=".1"/><stop offset="1" stop-color="#041f29" stop-opacity=".48"/></linearGradient>
+<radialGradient id="lamp"><stop stop-color="#ffe9a3"/><stop offset=".3" stop-color="#e1a759"/><stop offset="1" stop-color="#674b32"/></radialGradient>
+</defs>
+<g filter="url(#pigment)">
+<ellipse cx="230" cy="350" rx="188" ry="24" fill="#182c28" opacity=".23"/>
+<path d="M39 190l228-66 106 57v149l-224 43-110-55Z" fill="url(#stone)"/>
+<path d="M45 194l220-64v156L47 335Z" fill="url(#plaster)"/>
+<path d="M267 130l100 54v137l-100-41Z" fill="#637162"/>
+<path d="M48 202l217-62 M51 298l214-48 M265 140v153 M70 198v119 M154 172v122" stroke="#4c4d3b" stroke-width="9"/>
+<path d="M77 299l71-117M161 185l94 61" stroke="#7b7659" stroke-width="3"/>
+<path d="M82 213l39-10v56l-39 10Z" fill="#293b37" stroke="#bcaa7c" stroke-width="3"/>
+<path d="M87 217l29-7v44l-29 8Z" fill="url(#lamp)"/>
+<path d="M100 215v43M88 237l27-7" stroke="#4d4635" stroke-width="4"/>
+<path d="M191 202l49-13v98l-49 12Z" fill="url(#wood)" stroke="#444b37" stroke-width="3"/>
+<path d="M202 207v87m12-91v89m12-92v88M194 223l43-11m-43 61 43-10" stroke="#4a4031" stroke-width="3"/>
+<circle cx="230" cy="250" r="3" fill="#d4b97a"/>
+<path d="M183 302l61-16 11 9-62 18Z M177 315l78-19 12 10-79 20Z" fill="#8c8870" stroke="#514f42" stroke-width="3"/>
+<path d="M22 191L127 63l179-43 98 158-129-38Z" fill="#273c40" stroke="#3b4036" stroke-width="3"/>
+<path d="M22 191L127 63l179-43-35 118Z" fill="url(#roof)"/>
+<path d="M22 191L127 63l179-43-35 118Z" fill="url(#rooflight)"/>
+<path d="M271 138L306 20l98 158-72-23Z" fill="#755847"/>
+<path d="M306 23l11 102 86 32M315 50l-9 4m23 18-17 4m32 19-25 5m36 16-33 6" fill="none" stroke="#a58668" stroke-width="4"/>
+<path d="M19 193l254-53 133 41M124 63l181-43" fill="none" stroke="#baa37b" stroke-width="7"/>
+<path d="M25 201l246-51 130 38" fill="none" stroke="#373e33" stroke-width="3"/>
+<path d="M199 72V17l40-10 27 15v38l-29-8Z" fill="url(#stone)" stroke="#444c40" stroke-width="3"/>
+<path d="M195 17l43-12 32 17-42 12Z" fill="#b9af91"/>
+<path d="M202 19l35-9 23 12-32 8Z" fill="#343c32"/>
+<path d="M294 206l42 20v45l-42-19Z" fill="#243733" stroke="#9a9877" stroke-width="3"/>
+<path d="M315 217v45m-20-25 39 17" stroke="#8d9676" stroke-width="3"/>
+<path d="M352 193v123M275 170l82 38" stroke="#364939" stroke-width="3"/>
+<g fill="#526c40"><ellipse cx="51" cy="322" rx="22" ry="12"/><ellipse cx="72" cy="338" rx="27" ry="13"/>
+<ellipse cx="352" cy="301" rx="20" ry="16"/><ellipse cx="361" cy="279" rx="14" ry="15"/></g>
+<g fill="#a6ab59"><ellipse cx="44" cy="316" rx="10" ry="4"/><ellipse cx="68" cy="332" rx="12" ry="4"/>
+<ellipse cx="357" cy="281" rx="7" ry="3"/></g>
+<path d="M89 330l49-10v31l-49 10Z" fill="url(#wood)" stroke="#443d31" stroke-width="3"/>
+<path d="M94 332l38-8M95 354l38-7" stroke="#c4af7b" stroke-width="3"/>
+<g fill="#547947"><path d="M101 331l-7-24 10 8 7-18 7 14 9-12 1 25Z"/></g>
+</g>
+</svg>

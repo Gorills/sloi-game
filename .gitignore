@@ -16,3 +16,7 @@ __pycache__/
 *.pdf
 private/
 .DS_Store
+
+# Reproducible foliage artwork; source is tools/foliage.py.
+client/art/tree.svg
+client/art/shrub.svg

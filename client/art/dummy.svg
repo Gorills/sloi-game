@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="125" height="175" viewBox="0 0 125 175">
+<defs>
+<pattern id="stone" width="70" height="40" patternUnits="userSpaceOnUse">
+<rect width="70" height="40" fill="#625f4c"/>
+<path d="M2 2H35V18H2Z M39 2H68V18H39Z M2 22H17V38H2Z M21 22H53V38H21Z M57 22H68V38H57Z" fill="#969078"/>
+<path d="M4 4H32 M41 4H65 M23 24H50 M4 24H14" stroke="#b0a58a" stroke-width="2" opacity=".65"/>
+<path d="M7 8l4 2m34-3 6 2M27 29l5 2" stroke="#575e4b" opacity=".45"/>
+</pattern>
+<linearGradient id="shade" x2="1" y2="1"><stop stop-color="#343e37" stop-opacity="0"/><stop offset="1" stop-color="#132b2a" stop-opacity=".8"/></linearGradient>
+<linearGradient id="plaster" x2=".2" y2="1"><stop stop-color="#ded1a8"/><stop offset="1" stop-color="#8c9375"/></linearGradient>
+<linearGradient id="wood" x2="1" y2=".3"><stop stop-color="#5d4630"/><stop offset=".5" stop-color="#988061"/><stop offset="1" stop-color="#473e30"/></linearGradient>
+<pattern id="roof" width="42" height="28" patternUnits="userSpaceOnUse" patternTransform="skewX(-22)">
+<rect width="42" height="28" fill="#293c40"/><path d="M1 1h39v23l-7 3H1Z" fill="#50696a"/>
+<path d="M3 2h36v8H3Z" fill="#648080"/><path d="M4 18h32M7 22h21" stroke="#435c60"/>
+<path d="M1 27h32l7-4M41 1v26" fill="none" stroke="#1e3338" stroke-width="2"/>
+</pattern>
+<linearGradient id="rooflight" x2="0" y2="1"><stop stop-color="#dbcea5" stop-opacity=".24"/><stop offset=".7" stop-color="#0a292b" stop-opacity=".1"/><stop offset="1" stop-color="#041f29" stop-opacity=".48"/></linearGradient>
+<radialGradient id="lamp"><stop stop-color="#ffe9a3"/><stop offset=".3" stop-color="#e1a759"/><stop offset="1" stop-color="#674b32"/></radialGradient>
+</defs>
+<ellipse cx="64" cy="161" rx="39" ry="10" fill="#203a2c" opacity=".22"/>
+<path d="M59 84l4 71-27 13m27-13 33 6" fill="none" stroke="#70583a" stroke-width="10"/>
+<path d="M21 62l89-22" stroke="#b39b6c" stroke-width="9"/>
+<path d="M37 62l53-14 7 60-48 10Z" fill="#afa071" stroke="#766343" stroke-width="3"/>
+<path d="M44 69l43-12M46 80l43-11m-40 21 42-11m-40 22 39-9" stroke="#d3bf88" stroke-width="3"/>
+<path d="M61 78l16-5 7 11-16 15-13-9Z" fill="#913f35"/>
+<path d="M62 81l11-3 7 6-12 10-9-7Z" fill="#d3be84"/>
+<path d="M51 39q-4-25 15-27 21-4 22 18l-5 22-27 6Z" fill="#bdb080" stroke="#87734e" stroke-width="3"/>
+<path d="M56 23l26-7M54 31l31-9m-27 22 27-8" stroke="#d6c897" stroke-width="3"/>
+<path d="M50 107l7 18m5-22 3 21m8-23 4 17m6-20 9 12" stroke="#bfa979" stroke-width="3"/>
+</svg>

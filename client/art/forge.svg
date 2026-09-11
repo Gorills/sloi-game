@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="350" viewBox="0 0 420 350">
+<defs>
+<filter id="pigment" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" seed="8" result="noise"/>
+<feColorMatrix in="noise" type="saturate" values="0" result="grey"/>
+<feComponentTransfer in="grey" result="faded"><feFuncA type="linear" slope=".12"/></feComponentTransfer>
+<feComposite in="faded" in2="SourceGraphic" operator="in" result="grain"/>
+<feBlend in="SourceGraphic" in2="grain" mode="soft-light"/>
+</filter>
+<pattern id="stone" width="70" height="40" patternUnits="userSpaceOnUse">
+<rect width="70" height="40" fill="#747360"/>
+<path d="M2 2H35V18H2Z M39 2H68V18H39Z M2 22H17V38H2Z M21 22H53V38H21Z M57 22H68V38H57Z" fill="#a9a48a"/>
+<path d="M4 4H32 M41 4H65 M23 24H50 M4 24H14" stroke="#b0a58a" stroke-width="2" opacity=".65"/>
+<path d="M7 8l4 2m34-3 6 2M27 29l5 2" stroke="#575e4b" opacity=".45"/>
+</pattern>
+<linearGradient id="shade" x2="1" y2="1"><stop stop-color="#343e37" stop-opacity="0"/><stop offset="1" stop-color="#132b2a" stop-opacity=".8"/></linearGradient>
+<linearGradient id="plaster" x2=".2" y2="1"><stop stop-color="#ded1a8"/><stop offset="1" stop-color="#8c9375"/></linearGradient>
+<linearGradient id="wood" x2="1" y2=".3"><stop stop-color="#5d4630"/><stop offset=".5" stop-color="#988061"/><stop offset="1" stop-color="#473e30"/></linearGradient>
+<pattern id="roof" width="42" height="28" patternUnits="userSpaceOnUse" patternTransform="skewX(-22) scale(.65)">
+<rect width="42" height="28" fill="#293c40"/><path d="M1 1h39v23l-7 3H1Z" fill="#50696a"/>
+<path d="M3 2h36v8H3Z" fill="#648080"/><path d="M4 18h32M7 22h21" stroke="#435c60"/>
+<path d="M1 27h32l7-4M41 1v26" fill="none" stroke="#1e3338" stroke-width="2"/>
+</pattern>
+<linearGradient id="rooflight" x2="0" y2="1"><stop stop-color="#dbcea5" stop-opacity=".24"/><stop offset=".7" stop-color="#0a292b" stop-opacity=".1"/><stop offset="1" stop-color="#041f29" stop-opacity=".48"/></linearGradient>
+<radialGradient id="lamp"><stop stop-color="#ffe9a3"/><stop offset=".3" stop-color="#e1a759"/><stop offset="1" stop-color="#674b32"/></radialGradient><linearGradient id="cloth" x2="0" y2="1"><stop stop-color="#3f7771"/><stop offset="1" stop-color="#243e40"/></linearGradient>
+</defs>
+<g filter="url(#pigment)">
+<ellipse cx="230" cy="323" rx="180" ry="22" fill="#142d29" opacity=".25"/>
+<path d="M30 194l204-61 146 66v101l-212 40L30 289Z" fill="url(#stone)"/>
+<path d="M42 196l190-57 137 63-201 50Z" fill="#938c71"/>
+<path d="M45 198l188-50v101L45 296Z" fill="#adb094"/>
+<path d="M59 208l127-35v109l-127 26Z" fill="#283a33"/>
+<path d="M75 258q0-67 38-72 39-2 41 51v51l-79 16Z" fill="#655f49"/>
+<path d="M87 260q0-43 27-48 26-2 26 35v32l-53 12Z" fill="url(#lamp)"/>
+<path d="M90 280l15-31 10 11 8-33 11 51Z" fill="#ffd78a"/>
+<path d="M88 276l49-12m-44 18 39-9" stroke="#6d3f26" stroke-width="3"/>
+<path d="M62 300l90-22 17 14-91 25Z" fill="#b29b70"/>
+<path d="M31 194L130 70l133-35 120 154-133-29Z" fill="url(#roof)" stroke="#4e5f56" stroke-width="3"/>
+<path d="M31 194L130 70l133-35-13 125Z" fill="url(#rooflight)"/>
+<path d="M260 38l120 151-130-29Z" fill="#3b5856"/>
+<path d="M164 91V15l40-9 25 12v58Z" fill="url(#stone)" stroke="#4d5444" stroke-width="3"/>
+<path d="M160 16l44-12 29 14-45 13Z" fill="#c0b28b"/>
+<path d="M167 17l36-8 22 10-34 8Z" fill="#344339"/>
+<path d="M210 196l157-39 41 81-154 40Z" fill="url(#cloth)" stroke="#a19c70" stroke-width="3"/>
+<path d="M235 190l42 81m-12-88 43 79m-9-86 39 77m-8-86 39 78" stroke="#7eaaa0" stroke-width="15" opacity=".4"/>
+<path d="M253 277v45M403 239v65M220 197v111" stroke="#564937" stroke-width="7"/>
+<path d="M256 278q12 18 24-5 14 16 26-5 13 14 26-8 13 14 25-6 15 14 26-6 15 13 25-9" fill="#305950" stroke="#77978b" stroke-width="2"/>
+<path d="M284 314v-30l29-8 21 9v31Z" fill="#5e4b33"/>
+<path d="M265 275l27-14 39 6 24-9-4 14-28 13-3 12-28 5-3-14-22-4Z" fill="#788986" stroke="#283d3b" stroke-width="3"/>
+<path d="M267 276l27-10 35 6 24-10" fill="none" stroke="#c1c2a5" stroke-width="3"/>
+<path d="M184 273l30 16m-11-3 7-20M181 309l24-6m-22-17 20-6" stroke="#ab9265" stroke-width="3"/>
+<path d="M197 269l18-5-5-8-18 5Z" fill="#677b78"/>
+<path d="M355 295l28-7v25l-28 8Z" fill="url(#wood)"/>
+<path d="M355 300l28-7m-28 20 28-7" stroke="#3b4b45" stroke-width="4"/>
+</g>
+</svg>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Слои — у ворот Кадии</title>
+  <!-- STYLES -->
+</head>
+<body class="study">
+<main id="study" aria-label="Художественный образец Слоёв">
+  <canvas id="world" tabindex="0" aria-label="Мир. WASD — движение, F — выбрать мишень, пробел — выстрел, E — припасы." aria-describedby="study-disclaimer"></canvas>
+  <div class="scene-vignette" aria-hidden="true"></div>
+  <div id="loading" role="status"><span class="loading-mark">СЛОИ</span><p>Подготовка сцены…</p></div>
+  <div class="hud-top">
+    <section class="identity hud-surface" aria-label="Персонаж образца">
+      <div class="portrait"><img data-art="hunter" alt=""></div>
+      <div class="identity-content"><div class="identity-line"><strong>Охотник</strong><span>ПЕРВЫЙ СЛОЙ</span></div>
+        <div class="health"><span></span></div><div class="identity-caption">Образец персонажа <span>100 / 100</span></div>
+      </div>
+    </section>
+    <section class="location" aria-label="Местоположение">
+      <p class="eyebrow">ПЕРВЫЙ СЛОЙ <span class="location-divider">/</span> ПОСЕЛЕНИЕ</p>
+      <h1>У ворот Кадии</h1><p class="location-sub">Южная дорога · художественный образец</p>
+      <button id="open-map" class="map-button" aria-label="Карта местности">
+        <svg viewBox="0 0 28 28" aria-hidden="true"><path d="m3 7 7-3 8 3 7-3v18l-7 3-8-3-7 3Zm7-3v18m8-15v18"/></svg>
+        Карта <kbd>M</kbd>
+      </button>
+    </section>
+  </div>
+  <section id="objective" class="objective" aria-label="Задача образца">
+    <span class="objective-mark" aria-hidden="true">◇</span>
+    <div><span class="eyebrow">ПЕРЕД ДОРОГОЙ</span><p id="objective-text">Проверьте припасы у повозки</p><small>Подойдите к ящику и нажмите E</small></div>
+  </section>
+  <div id="context" class="context-prompt" hidden><button id="interact"><kbd>E</kbd> <span id="context-label">Забрать патроны</span></button></div>
+  <div id="target-status" class="target-status" hidden>УЧЕБНАЯ МИШЕНЬ <span id="hit-count">Попаданий: 0</span></div>
+  <section class="hud-bottom" aria-label="Действия персонажа">
+    <div class="weapon hud-surface">
+      <img data-art="revolver" alt="Револьвер">
+      <div><span class="eyebrow">РЕВОЛЬВЕР</span><div class="ammo-line"><strong id="ammo">6</strong><span>/ 6</span><span class="reserve">ЗАПАС <b id="reserve">12</b></span></div>
+        <div id="rounds" class="rounds" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+    <div class="actions hud-surface">
+      <button id="fire" class="action primary-action" aria-label="Выстрел по выбранной мишени"><img data-art="revolver" alt=""><span>Выстрел</span><kbd>SPACE</kbd></button>
+      <button id="reload" class="action" aria-label="Перезарядить"><img data-art="cartridges" alt=""><span>Зарядить</span><kbd>R</kbd></button>
+      <button id="open-inventory" class="action" aria-label="Открыть инвентарь"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M10 9V6q6-7 12 0v3M7 9h18l2 20H5ZM8 16h16v9H8Zm4 0v4m8-4v4"/></svg><span>Снаряжение</span><kbd>I</kbd></button>
+    </div>
+    <button id="open-settings" class="settings-button hud-surface" aria-label="Открыть настройки"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m12 4 8 0 1 5 5 1 2 7-4 3v5l-7 3-4-3-5 1-4-6 3-5-1-5 6-2Z"/><circle cx="16" cy="16" r="5"/></svg><kbd>ESC</kbd></button>
+  </section>
+  <div class="feedback"><p id="notice" role="status">Осмотрите припасы у повозки или пройдите к мишени.</p></div>
+  <div class="footer-hints"><span><kbd>WASD</kbd> Движение <span class="hint-secondary">· <kbd>F</kbd> Выбрать мишень</span></span>
+    <button id="open-about" aria-label="Об этом образце">Локальная сцена <span>01</span></button>
+  </div>
+  <p id="study-disclaimer" class="sr-only">Это локальный художественный образец, не мультиплеер. Компоновка Кадии условная. Прогресс сбрасывается после перезагрузки.</p>
+</main>
+<dialog id="inventory" class="game-panel" aria-labelledby="inventory-title">
+  <header class="panel-header"><div><p class="eyebrow">ПОХОДНЫЙ НАБОР</p><h2 id="inventory-title">Снаряжение</h2></div><button class="close-panel" aria-label="Закрыть инвентарь">×</button></header>
+  <div class="inventory-layout">
+    <section class="paper-doll" aria-label="Снаряжение персонажа"><div class="doll-ring"></div><img class="doll" data-art="hunter" alt="Походный плащ и кожаное снаряжение охотника">
+      <span class="doll-caption">ОХОТНИК <small>Первый Слой</small></span>
+      <div class="equipment"><img data-art="revolver" alt="Револьвер"><img data-art="amulet" alt="Амулет — образец графики"></div>
+    </section>
+    <section class="pack"><p class="eyebrow">В РЮКЗАКЕ <span>3 ПРЕДМЕТА</span></p>
+      <button class="item" data-item="revolver"><img data-art="revolver" alt=""><span><strong>Походный револьвер</strong><small>Оружие · экипировано</small></span><span class="item-chevron">›</span></button>
+      <button class="item" data-item="cartridges"><img data-art="cartridges" alt=""><span><strong>Учебные патроны</strong><small>Боезапас</small></span><b id="inventory-ammo">12</b></button>
+      <button class="item" data-item="amulet"><img data-art="amulet" alt=""><span><strong>Дорожный амулет</strong><small>Образец предмета · без эффекта</small></span><span class="item-chevron">›</span></button>
+      <div class="item-details"><span class="eyebrow">ОПИСАНИЕ</span><h3 id="item-title">Походный револьвер</h3><p id="item-description">Шесть патронов в барабане. В этой сцене можно проверить стрельбу только по учебной мишени.</p></div>
+    </section>
+  </div>
+  <footer class="panel-footer">Состояние только этой сцены. Нет торговли и боевых наград.</footer>
+</dialog>
+<dialog id="settings" class="game-panel small-panel" aria-labelledby="settings-title">
+  <header class="panel-header"><div><p class="eyebrow">УДОБСТВО И УПРАВЛЕНИЕ</p><h2 id="settings-title">Настройки</h2></div><button class="close-panel" aria-label="Закрыть настройки">×</button></header>
+  <div class="settings-content">
+    <label class="option"><span>Уменьшить движение<small>Без покачивания листвы и плавного хода камеры</small></span><input id="reduce-motion" type="checkbox"></label>
+    <label class="option"><span>Звук действий<small>Синтезированный отклик выстрела; изначально выключен</small></span><input id="enable-sound" type="checkbox"></label>
+    <label class="option"><span>Размер текста</span><select id="study-text-scale"><option value="100">100%</option><option value="125">125%</option><option value="150">150%</option><option value="200">200%</option></select></label>
+    <p class="panel-note">WASD / стрелки — идти · F — выбрать мишень · Space — стрелять · R — зарядить · E — припасы · I — инвентарь · M — карта.</p>
+  </div>
+</dialog>
+<dialog id="map" class="game-panel small-panel" aria-labelledby="map-title">
+  <header class="panel-header"><div><p class="eyebrow">ОКРЕСТНОСТИ</p><h2 id="map-title">Южная дорога</h2></div><button class="close-panel" aria-label="Закрыть карту">×</button></header>
+  <canvas id="local-map" width="620" height="400" aria-label="Схема образца: мастерская к северо-западу, припасы к западу, мишень к востоку"></canvas>
+  <p class="panel-note">Условная компоновка для проверки графики и навигации, не каноническая карта Кадии.</p>
+</dialog>
+<dialog id="about" class="game-panel small-panel" aria-labelledby="about-title">
+  <header class="panel-header"><div><p class="eyebrow">СЛОИ / ОБРАЗЕЦ 01</p><h2 id="about-title">О сцене</h2></div><button class="close-panel" aria-label="Закрыть описание">×</button></header>
+  <div class="settings-content"><p>Один управляемый фрагмент: движение, перекрытие объектов, припасы, инвентарь и учебный выстрел.</p><p>Это локальная сцена, а не сетевой режим игры. Персонаж, патроны и состояние мишени сбрасываются после перезагрузки. Дома и предметы — отдельная SVG-графика, отрисованная в Canvas.</p><p>Внешний вид, схема поселения и правила стрельбы пока не утверждены.</p></div>
+</dialog>
+<!-- ASSETS -->
+<!-- MODULES -->
+</body>
+</html>

@@ -82,9 +82,9 @@ def catalog_page(server_url, request):
         page.on("pageerror", lambda error: errors.append(str(error)))
         try:
             if mode == "url":
-                page.goto(server_url, wait_until="load")
+                page.goto(server_url + "/catalog", wait_until="load")
             else:
-                with urllib.request.urlopen(server_url, timeout=5) as response:
+                with urllib.request.urlopen(server_url + "/catalog", timeout=5) as response:
                     html = response.read().decode("utf-8")
                 assert html == (ROOT / "dist/index.html").read_text(encoding="utf-8")
                 page.set_content(html, wait_until="load")

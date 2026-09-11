@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="90" viewBox="0 0 140 90">
+<defs>
+<filter id="pigment" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" seed="8" result="noise"/>
+<feColorMatrix in="noise" type="saturate" values="0" result="grey"/>
+<feComponentTransfer in="grey" result="faded"><feFuncA type="linear" slope=".12"/></feComponentTransfer>
+<feComposite in="faded" in2="SourceGraphic" operator="in" result="grain"/>
+<feBlend in="SourceGraphic" in2="grain" mode="soft-light"/>
+</filter>
+
+</defs>
+<g filter="url(#pigment)">
+<ellipse cx="72" cy="74" rx="65" ry="11" fill="#253d2d" opacity=".2"/>
+<path d="M7 65l20-36 29-14 37 18 20 42-52 10Z" fill="#88907a"/>
+<path d="M7 65l20-36 35 18-1 38Z" fill="#717e66"/>
+<path d="M27 29l29-14 37 18-31 14Z" fill="#b4b49b"/>
+<path d="M63 48l50 27-52 10Z" fill="#556854"/>
+<path d="M89 60l19-24 20 10 10 22-18 13-25-3Z" fill="#919980"/>
+<path d="M92 60l16-24 20 10-15 11Z" fill="#b6b69b"/>
+<path d="M16 75l10-14 18 8-4 13Z" fill="#a4a687"/>
+<path d="M24 37l12 5m31-11 17 1m-18 30-1 12" stroke="#ccd0b1" stroke-width="2" opacity=".6"/>
+</g>
+</svg>
