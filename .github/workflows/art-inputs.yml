@@ -59,7 +59,8 @@ jobs:
           print('Saved', [entry['path'] for entry in chosen])
           PY
       - name: Obtain the already pinned local lint tool
-        run: python -m pip download --no-deps --only-binary=:all: ruff==0.12.12 --dest prepared/wheels
+        run: |
+          python -m pip download --no-deps --only-binary=:all: ruff==0.12.12 --dest prepared/wheels
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: artwork-inputs
