@@ -27,11 +27,11 @@ TypeScript здесь отдельный закреплённый build-tool, ru
 
 | Команда | Назначение |
 |---|---|
-| `make build` | Строгая TS-сборка, токены → CSS variables, автономный `dist/index.html` |
+| `make build` | Строгая TS-сборка, токены → CSS variables, автономные `dist/index.html` и `dist/scene.html` |
 | `make serve` | FastAPI на `127.0.0.1:8000` |
 | `make lint` | Ruff check/format и проектные ограничения |
 | `make test` | Unit/integration основы, без браузера |
-| `make browser` | Каталог через настоящую URL-навигацию |
+| `make browser` | Каталог и сцена через настоящую URL-навигацию |
 | `make check` | Lint + build + unit/integration + browser, без пропуска этапов |
 
 При уже установленном Chromium можно явно задать `CHROMIUM_EXECUTABLE=/usr/bin/chromium`.
@@ -52,3 +52,17 @@ BROWSER_BOOTSTRAP=embedded CHROMIUM_EXECUTABLE=/usr/bin/chromium make browser
 Артефакты браузерного прогона записываются в `artifacts/`, не коммитятся.
 `dist/` пересобирается. Не публикуйте корень репозитория универсальным HTTP file server:
 могут стать доступны служебные файлы. Приложение отдаёт только собранный HTML.
+
+## Рабочий художественный образец
+
+После `make serve` откройте `/scene`; `/` по-прежнему открывает каталог.
+Автономный `dist/scene.html` содержит все ресурсы и работает без сети.
+Сцена не подключается к игровому серверу, не сохраняет предметы/настройки и не заменяет S1.
+[Графика и управление](design/scene-study.md).
+
+Тесты сцены пишут видео, поэтому нужен FFmpeg из `python -m playwright install chromium`.
+Для изолированного Linux с уже установленными Chromium и FFmpeg допустим явно созданный
+локальный каталог `PLAYWRIGHT_BROWSERS_PATH` со ссылкой
+`ffmpeg-1011/ffmpeg-linux` на системный FFmpeg (проверяемая версия Playwright 1.57.0).
+Это привязка только текущего стенда; после обновления Playwright нужно перепроверить путь.
+Не менять политики браузера и не выключать запись молча, когда FFmpeg отсутствует.

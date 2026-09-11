@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15211e">
+  <title>СЛОИ — Предместье / художественный этюд</title>
+  <!-- STYLES -->
+</head>
+<body>
+  <svg class="icon-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-gun" viewBox="0 0 40 40"><path d="M5 14h28v7H20l-1 5h-5l-4 10H4l6-17zM25 14V9h4v5M33 16h5v3h-5M15 22v5h4l3-6"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 40 40"><path d="M12 12V8c0-7 16-7 16 0v4M9 12h22l4 23H5zM8 21h24M14 19v7m12-7v7M16 29h8"/></symbol>
+    <symbol id="i-map" viewBox="0 0 40 40"><path d="m4 8 11-4 10 4 11-4v28l-11 4-10-4-11 4zm11-4v28m10-24v28M9 20l8-4 7 4 6-8"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 40 40"><circle cx="20" cy="20" r="15"/><path d="m25 12-3 10-10 6 5-11zm-5-12v5m0 30v5M0 20h5m30 0h5"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 40 40"><path d="M8 10h24M8 20h24M8 30h24M14 6v8m12 2v8m-10 2v8"/></symbol>
+    <symbol id="i-reload" viewBox="0 0 40 40"><path d="M32 15a13 13 0 1 0 0 13M32 6v10H22"/><circle cx="20" cy="20" r="4"/></symbol>
+    <symbol id="i-close" viewBox="0 0 40 40"><path d="m10 10 20 20M10 30l20-20"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 40 40"><path d="M16 4h8v7l5 5v18H11V16l5-5zm-4 15h16M16 4v-2h8v2"/></symbol>
+    <symbol id="i-bandage" viewBox="0 0 40 40"><path d="m5 27 22-22 8 8-22 22zM15 17l8 8m-5-11 8 8M6 27l7 7m14-28 7 7"/></symbol>
+    <symbol id="i-box" viewBox="0 0 40 40"><path d="m4 11 16-7 16 7v20l-16 6-16-6zm0 0 16 7 16-7M20 18v19M12 8l16 7v8"/></symbol>
+  </svg>
+  <main id="game" aria-label="Художественный этюд Слоёв">
+    <canvas id="scene" tabindex="0" aria-label="Предместье. WASD — движение, E — взаимодействие, F — цель, Пробел — выстрел, I — сумка."></canvas>
+    <div class="scene-vignette" aria-hidden="true"></div>
+    <div id="loading" role="status"><span class="wordmark">СЛОИ</span><p>Подготовка сцены…</p></div>
+    <section class="player-hud" aria-label="Персонаж">
+      <div class="portrait"><canvas id="portrait" width="96" height="96" aria-hidden="true"></canvas></div>
+      <div class="player-info"><strong>Путник</strong><span>Первый Слой</span>
+        <div class="health-line" aria-label="Образец индикатора здоровья: полное"><span></span></div>
+        <small>ХУДОЖЕСТВЕННЫЙ ЭТЮД</small>
+      </div>
+    </section>
+    <div class="location"><span>С Л О И</span><h1>Предместье</h1><p>На пороге большого мира</p></div>
+    <aside class="navigation" aria-label="Навигация и задача">
+      <button id="map-button" class="minimap-button" aria-label="Открыть карту">
+        <canvas id="minimap" width="320" height="220" aria-hidden="true"></canvas>
+        <span class="north">N</span><span class="map-caption">КАРТА <kbd>M</kbd></span>
+      </button>
+      <section class="objectives" aria-label="Цель этюда"><span class="eyebrow">ПЕРЕД ДОРОГОЙ</span>
+        <p id="task-supply" data-done="false">Забрать карту у мастерской</p>
+        <p id="task-shot" data-done="false">Испытать оружие на манекене</p>
+        <p id="task-road" data-done="false">Дойти до ворот</p>
+      </section>
+    </aside>
+    <div id="world-prompt" hidden><button id="interact-button"><kbd>E</kbd> Ящик с припасами</button></div>
+    <div id="scene-message" role="status" aria-live="polite"></div>
+    <section class="weapon-hud" aria-label="Оружие"><svg class="icon" aria-hidden="true"><use href="#i-gun"/></svg>
+      <div><span class="eyebrow">РЕВОЛЬВЕР</span><p><b id="rounds">6</b><span> / 6</span></p></div>
+      <small id="shot-status">Выберите манекен: F</small>
+    </section>
+    <nav class="actionbar" aria-label="Действия">
+      <button id="attack-button" aria-label="Выстрел"><kbd>ПРОБЕЛ</kbd><svg class="icon" aria-hidden="true"><use href="#i-gun"/></svg><span>Выстрел</span></button>
+      <button id="reload-button" aria-label="Перезарядить"><kbd>R</kbd><svg class="icon" aria-hidden="true"><use href="#i-reload"/></svg><span id="reload-label">Зарядить</span></button>
+      <span class="action-separator" aria-hidden="true"></span>
+      <button id="inventory-button" aria-label="Открыть сумку"><kbd>I</kbd><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg><span>Сумка</span></button>
+      <button id="settings-button" aria-label="Настройки и управление"><kbd>ESC</kbd><svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg><span>Настройки</span></button>
+    </nav>
+    <div class="study-label"><span>W A S D</span> движение <i>·</i> <span>F</span> цель<br><small>Локальная сцена · без сохранений и сетевых игроков</small></div>
+    <div class="training-label">ПОПАДАНИЯ <span id="hit-count">0</span></div>
+  </main>
+  <dialog id="inventory" class="inventory-panel" aria-labelledby="inventory-title">
+    <header><div><span class="eyebrow">СНАРЯЖЕНИЕ ПУТНИКА</span><h2 id="inventory-title">Дорожная сумка</h2></div>
+      <button data-close aria-label="Закрыть сумку" class="close"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </header>
+    <div class="inventory-content">
+      <div class="equipment-portrait"><canvas id="equipment" width="232" height="260" aria-label="Изображение экипированного персонажа"></canvas><span>ПУТНИК</span><small>Дорожный комплект</small></div>
+      <section class="bag-content" aria-label="Предметы"><div class="inventory-summary"><span>С собой</span><span id="inventory-count">3 предмета</span></div>
+        <div class="item-grid">
+          <button class="item-slot" aria-label="Револьвер" aria-pressed="true" data-name="Револьвер" data-description="Шесть патронов в барабане. В этом этюде оружие работает только по тренировочному манекену."><svg class="icon" aria-hidden="true"><use href="#i-gun"/></svg><span>Револьвер</span></button>
+          <button class="item-slot" aria-label="Фляга" aria-pressed="false" data-name="Походная фляга" data-description="Образец предмета снабжения. Жажда и расход воды здесь не моделируются."><svg class="icon" aria-hidden="true"><use href="#i-drop"/></svg><span>Фляга</span></button>
+          <button class="item-slot" aria-label="Перевязь" aria-pressed="false" data-name="Перевязь" data-description="Образец предмета экипировки. Не даёт скрытых бонусов и не изменяет характеристики."><svg class="icon" aria-hidden="true"><use href="#i-bandage"/></svg><span>Перевязь</span></button>
+          <button id="map-item" class="item-slot" hidden aria-label="Карта тракта" aria-pressed="false" data-name="Карта тракта" data-description="Вы забрали её у мастерской. На карте отмечены ящик с припасами, тренировочный манекен и выход из поселения."><svg class="icon" aria-hidden="true"><use href="#i-map"/></svg><span>Карта тракта</span></button>
+        </div>
+        <div class="item-detail"><h3 id="item-title">Револьвер</h3><p id="item-description">Шесть патронов в барабане. В этом этюде оружие работает только по тренировочному манекену.</p></div>
+      </section>
+    </div>
+    <footer><kbd>ESC</kbd> вернуться в мир <span>Предметы этюда не сохраняются</span></footer>
+  </dialog>
+  <dialog id="supply-dialog" class="small-panel" aria-labelledby="supply-title">
+    <header><div><span class="eyebrow">ПОДГОТОВКА</span><h2 id="supply-title">Перед выходом</h2></div><button data-close class="close" aria-label="Закрыть припасы"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></header>
+    <svg class="supply-art icon" aria-hidden="true"><use href="#i-map"/></svg>
+    <p id="supply-description">Поверх припасов лежит карта окрестностей.</p>
+    <button id="take-map" class="primary">Взять карту</button>
+    <p class="panel-note">Только локальное взаимодействие этюда. Не игровая экономика.</p>
+  </dialog>
+  <dialog id="map-dialog" class="map-panel" aria-labelledby="map-title">
+    <header><div><span class="eyebrow">ПЕРВЫЙ СЛОЙ · ЭТЮД</span><h2 id="map-title">Окрестности</h2></div><button data-close class="close" aria-label="Закрыть карту"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></header>
+    <canvas id="large-map" width="1000" height="670" aria-label="Карта этюда: припасы к северо-западу от старта, манекен к востоку, ворота к северо-востоку"></canvas>
+    <div class="map-legend"><span>◇ Припасы</span><span>◎ Манекен</span><span>⌃ Выход</span></div>
+    <p class="panel-note">Условная география художественного образца, не карта мира книг.</p>
+  </dialog>
+  <dialog id="settings-dialog" class="small-panel" aria-labelledby="settings-title">
+    <header><div><span class="eyebrow">ЭТЮД V0.1</span><h2 id="settings-title">Управление</h2></div><button data-close class="close" aria-label="Закрыть настройки"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></header>
+    <dl class="controls"><dt>WASD / стрелки</dt><dd>Движение</dd><dt>ЛКМ / F</dt><dd>Выбор манекена</dd><dt>Пробел</dt><dd>Выстрел</dd><dt>R</dt><dd>Перезарядка</dd><dt>E</dt><dd>Ящик с припасами</dd><dt>I / M</dt><dd>Сумка / карта</dd><dt>Esc</dt><dd>Закрыть окно</dd></dl>
+    <label class="setting-row"><span>Уменьшить движение</span><input id="reduce-motion" type="checkbox"></label>
+    <label class="setting-row"><span>Звук выстрела</span><input id="sound-enabled" type="checkbox"></label>
+    <label class="setting-row"><span>Размер текста</span><select id="ui-scale"><option value="1">100%</option><option value="1.5">150%</option><option value="2">200%</option></select></label>
+    <p class="panel-note">Клавиатура и мышь. Настройки действуют до перезагрузки. Это проверка визуального направления, не готовая RPG.</p>
+  </dialog>
+  <!-- MODULES -->
+</body>
+</html>
